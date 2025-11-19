@@ -5,5 +5,5 @@ name = st.text_input("이름을 입력해 주세요! :")
 menu = st.selectbox("좋아하는 맛을 입력해 주세요: ", ["아몬드 봉봉","엄마는 외계인","민트 초코"])
 if st.button("문장 생성") :  
   st.write(name+"님 안녕하세요. 좋아하는 맛은 " + menu + "이군요!")
-if select("민트 초코") :
+if st.select("민트 초코") :
   st.write("넌 나가라")
