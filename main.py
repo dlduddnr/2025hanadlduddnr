@@ -48,25 +48,26 @@ for i in range(scoop_count):
 # 4️⃣ 토핑 선택
 # -------------------------------
 st.header("4️⃣ 토핑 추가 🍫🍪🍓 (개당 500원)")
-
 toppings_list = ["초코칩", "시럽", "견과류", "과일"]
 chosen_toppings = st.multiselect("원하는 토핑을 선택하세요:", toppings_list)
 topping_price = 500 * len(chosen_toppings)
 
 # -------------------------------
-# 5️⃣ 결제 선택
+# 5️⃣ 결제 선택 (현금/카드/모바일/기프티콘)
 # -------------------------------
-st.header("5️⃣ 결제 방법 선택 💳💵📱")
-payment = st.radio("결제 수단:", ["현금", "카드", "모바일 결제"])
+st.header("5️⃣ 결제 방법 선택 💳💵📱🎁")
+payment = st.radio("결제 수단:", ["현금", "카드", "모바일 결제", "기프티콘"])
 if payment == "현금":
     st.info("현금 결제 선택! 계산대에서 결제해주세요 💵")
 elif payment == "카드":
     st.info("카드 결제 선택! 카드 단말기로 결제하세요 💳")
-else:
+elif payment == "모바일 결제":
     st.info("모바일 결제 선택! QR코드로 결제 가능 📱")
+else:
+    st.info("기프티콘 결제 선택! 휴대폰으로 전송된 기프티콘을 사용하세요 🎁")
 
 # -------------------------------
-# 6️⃣ 주문 완료 버튼
+# 6️⃣ 주문 완료 버튼 & 가격 계산
 # -------------------------------
 st.header("6️⃣ 주문 확인 및 완료 🍨")
 if st.button("주문 완료! 🎉"):
@@ -78,4 +79,8 @@ if st.button("주문 완료! 🎉"):
     st.write(f"🍫 토핑: {', '.join(chosen_toppings) if chosen_toppings else '없음'}")
     st.write(f"💰 총 가격: **{total_price}원**")
     st.write(f"💳 결제 방식: **{payment}**")
-    st.balloons()
+    
+    # 🚗 5000원 이상 구매 시 주차권 안내
+    if total_price >= 5000:
+        st.balloons()
+        st.info("🎉 5000원 이상 구매하셨으므로, **자동차 주차권**이 발급됩니다! 🚗🅿️")
